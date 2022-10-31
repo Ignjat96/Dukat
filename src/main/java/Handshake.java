@@ -68,7 +68,6 @@ public final class Handshake {
         }
         if (!messageChecker(explorer.getSocket(), message)) return false;
 
-
         return true;
     }
 }

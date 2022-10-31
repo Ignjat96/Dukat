@@ -5,7 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e4f1d6f0-1066-455c-8c4e-943569fc3e06" name="Changes" comment="Bug fixes">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.github/workflows/main.yml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Handshake.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Handshake.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -91,7 +91,7 @@
       <workItem from="1667256123785" duration="84000" />
       <workItem from="1667256252039" duration="26000" />
       <workItem from="1667256344590" duration="664000" />
-      <workItem from="1667258951121" duration="343000" />
+      <workItem from="1667258951121" duration="659000" />
     </task>
     <task id="LOCAL-00001" summary="Path change">
       <created>1666641601284</created>
@@ -121,7 +121,14 @@
       <option name="project" value="LOCAL" />
       <updated>1667255693368</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Bug fixes">
+      <created>1667259309730</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1667259309730</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
