@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e4f1d6f0-1066-455c-8c4e-943569fc3e06" name="Changes" comment="Bug fixes" />
+    <list default="true" id="e4f1d6f0-1066-455c-8c4e-943569fc3e06" name="Changes" comment="Bug fixes">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Handshake.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Handshake.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -12,6 +15,13 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/src/main/java/Explorer.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/Listener.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/Handshake.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/ListenerThread.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Peers" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -41,7 +51,7 @@
       <recent name="C:\Users\Administrator\Desktop\Dukat\Dukat\src\main\java" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Listener">
+  <component name="RunManager" selected="Application.Explorer">
     <configuration name="Explorer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Explorer" />
       <module name="Dukat" />
@@ -58,8 +68,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Listener" />
         <item itemvalue="Application.Explorer" />
+        <item itemvalue="Application.Listener" />
       </list>
     </recent_temporary>
   </component>
@@ -80,6 +90,8 @@
       <workItem from="1667255998781" duration="80000" />
       <workItem from="1667256123785" duration="84000" />
       <workItem from="1667256252039" duration="26000" />
+      <workItem from="1667256344590" duration="664000" />
+      <workItem from="1667258951121" duration="343000" />
     </task>
     <task id="LOCAL-00001" summary="Path change">
       <created>1666641601284</created>
