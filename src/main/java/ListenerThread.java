@@ -6,14 +6,14 @@ import java.io.*;
 
 public class ListenerThread implements Runnable {
 
-    private Listener listener;
+    private Node node;
     private BufferedReader in;
     private PrintWriter out;
 
-    public ListenerThread(Listener listener) throws IOException {
-        this.listener = listener;
-        this.out = new PrintWriter(listener.getSocket().getOutputStream());
-        this.in = new BufferedReader(new InputStreamReader(listener.getSocket().getInputStream()));
+    public ListenerThread(Node node) throws IOException {
+        this.node = node;
+        this.out = new PrintWriter(node.getSocket().getOutputStream());
+        this.in = new BufferedReader(new InputStreamReader(node.getSocket().getInputStream()));
     }
 
     @Override
@@ -24,7 +24,7 @@ public class ListenerThread implements Runnable {
                 in.close();
                 return;
             }
-            listener.getRemotePeers(in, out);
+            node.getRemotePeers(in, out);
             try {
                 while (true) {
                     String receivedMessage = in.readLine();
@@ -37,7 +37,7 @@ public class ListenerThread implements Runnable {
                         JSONObject message = new JSONObject();
                         JSONArray localPeers = new JSONArray();
 
-                        for (String peer: listener.getAlreadyKnownPeers()) {
+                        for (String peer: node.getAlreadyKnownPeers()) {
                             localPeers.add(peer);
                         }
                         message.put("type", "peers");

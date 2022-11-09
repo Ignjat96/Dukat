@@ -1,7 +1,6 @@
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
-import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
 import org.json.simple.parser.ParseException;
@@ -14,7 +13,7 @@ import java.util.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-public class Listener {
+public class Node {
 
     private ServerSocket serverSocket;
     private Socket socket;
@@ -23,7 +22,7 @@ public class Listener {
     private static ExecutorService listenerPool = Executors.newFixedThreadPool(LIMIT);
     private static ExecutorService explorerPool = Executors.newFixedThreadPool(LIMIT);
 
-    public Listener() throws IOException {
+    public Node() throws IOException {
         this.serverSocket = new ServerSocket(18018);
         this.socket = new Socket();
     }
@@ -103,7 +102,7 @@ public class Listener {
         peersWriter.close();
     }
 
-    public void establishConnections(Listener listener) throws IOException {
+    public void establishConnections(Node node) throws IOException {
         ArrayList<String> peersToConnect = new ArrayList<>(this.getAlreadyKnownPeers());
         if (peersToConnect.size() == 0) {
             System.err.println("There are no known peers to connect to!");
@@ -112,7 +111,7 @@ public class Listener {
         for (int i = 0; i < peersToConnect.size(); i++) {
             String peer = peersToConnect.get(new Random().nextInt(peersToConnect.size()-1));
             peersToConnect.remove(peer);
-            ExplorerThread explorerThread = new ExplorerThread(listener, peer);
+            ExplorerThread explorerThread = new ExplorerThread(node, peer);
             connectedPeersWithExplorer.add(explorerThread);
             if (connectedPeersWithExplorer.size() >= LIMIT) {
                 return;
@@ -123,20 +122,20 @@ public class Listener {
     }
 
     public static void main(String[] args) throws IOException {
-        Listener listener = new Listener();
+        Node node = new Node();
 
         try {
             while (true) {
-                listener.socket = listener.serverSocket.accept();
+                node.socket = node.serverSocket.accept();
 
-                ListenerThread peerThread = new ListenerThread(listener);
+                ListenerThread peerThread = new ListenerThread(node);
                 listenerPool.execute(peerThread);
 
-                listener.establishConnections(listener);
+                node.establishConnections(node);
             }
         } finally {
-            listener.getServerSocket().close();
-            listener.getSocket().close();
+            node.getServerSocket().close();
+            node.getSocket().close();
         }
 
     }

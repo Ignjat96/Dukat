@@ -4,24 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e4f1d6f0-1066-455c-8c4e-943569fc3e06" name="Changes" comment="Bug fixes">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ExplorerThread.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Peers" beforeDir="false" afterPath="$PROJECT_DIR$/Peers" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bootstrappingNode.properties" beforeDir="false" afterPath="$PROJECT_DIR$/bootstrappingNode.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Error.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Error.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Explorer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Explorer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Handshake.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Handshake.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Listener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Listener.java" afterDir="false" />
+    <list default="true" id="e4f1d6f0-1066-455c-8c4e-943569fc3e06" name="Changes" comment="Bug fixes Task 1 New Code">
+      <change beforePath="$PROJECT_DIR$/src/main/java/Explorer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ExplorerThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ExplorerThread.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Listener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Node.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ListenerThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ListenerThread.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Error.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Error.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/Explorer$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Explorer$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/Explorer.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Explorer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Handshake.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Handshake.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Listener.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Listener.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ListenerThread.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ListenerThread.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,8 +28,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/src/main/java/Explorer.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/main/java/Listener.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/Node.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/main/java/Handshake.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/main/java/ListenerThread.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Peers" root0="FORCE_HIGHLIGHTING" />
@@ -77,7 +65,7 @@
       <recent name="C:\Users\Administrator\Desktop\Dukat\Dukat\src\main\java" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Listener">
+  <component name="RunManager" selected="Application.Node">
     <configuration name="Explorer 2" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="Explorer" />
       <module name="Dukat" />
@@ -92,8 +80,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Listener" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Listener" />
+    <configuration name="Node" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Node" />
       <module name="Dukat" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -101,13 +89,13 @@
     </configuration>
     <list>
       <item itemvalue="Application.Explorer 2" />
-      <item itemvalue="Application.Listener" />
       <item itemvalue="Application.ExplorerTester" />
+      <item itemvalue="Application.Node" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.ExplorerTester" />
-        <item itemvalue="Application.Listener" />
+        <item itemvalue="Application.Node" />
       </list>
     </recent_temporary>
   </component>
@@ -136,7 +124,7 @@
       <workItem from="1667756623609" duration="40000" />
       <workItem from="1667815743524" duration="865000" />
       <workItem from="1667846873388" duration="71000" />
-      <workItem from="1667920737309" duration="25597000" />
+      <workItem from="1667920737309" duration="26046000" />
     </task>
     <task id="LOCAL-00001" summary="Path change">
       <created>1666641601284</created>
@@ -187,7 +175,14 @@
       <option name="project" value="LOCAL" />
       <updated>1667816018464</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Bug fixes Task 1 New Code">
+      <created>1668037311915</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1668037311915</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -207,6 +202,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Path change" />
     <MESSAGE value="Bug fixes" />
-    <option name="LAST_COMMIT_MESSAGE" value="Bug fixes" />
+    <MESSAGE value="Bug fixes Task 1 New Code" />
+    <option name="LAST_COMMIT_MESSAGE" value="Bug fixes Task 1 New Code" />
   </component>
 </project>

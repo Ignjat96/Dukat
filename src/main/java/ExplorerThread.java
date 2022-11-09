@@ -10,13 +10,13 @@ import java.net.Socket;
 
 public class ExplorerThread implements Runnable {
 
-    private Listener listener;
+    private Node node;
     private Socket socket;
     private PrintWriter out;
     private BufferedReader in;
 
-    public ExplorerThread(Listener listener, String peer) throws IOException {
-        this.listener = listener;
+    public ExplorerThread(Node node, String peer) throws IOException {
+        this.node = node;
         String[] AddressAndPort = peer.split(":");
         this.socket = new Socket(AddressAndPort[0], Integer.parseInt(AddressAndPort[1]));
         this.out = new PrintWriter(this.socket.getOutputStream());
@@ -31,7 +31,7 @@ public class ExplorerThread implements Runnable {
                 in.close();
                 return;
             }
-            listener.getRemotePeers(in, out);
+            node.getRemotePeers(in, out);
 
             try {
                 while (true) {
@@ -45,7 +45,7 @@ public class ExplorerThread implements Runnable {
                         JSONObject message = new JSONObject();
                         JSONArray localPeers = new JSONArray();
 
-                        for (String peer: listener.getAlreadyKnownPeers()) {
+                        for (String peer: node.getAlreadyKnownPeers()) {
                             localPeers.add(peer);
                         }
                         message.put("type", "peers");
