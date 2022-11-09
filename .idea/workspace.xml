@@ -4,14 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e4f1d6f0-1066-455c-8c4e-943569fc3e06" name="Changes" comment="Bug fixes Task 1 New Code">
-      <change beforePath="$PROJECT_DIR$/src/main/java/Explorer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ExplorerThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ExplorerThread.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Listener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Node.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ListenerThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ListenerThread.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Explorer$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Explorer$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Explorer.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Explorer.class" afterDir="false" />
-    </list>
+    <list default="true" id="e4f1d6f0-1066-455c-8c4e-943569fc3e06" name="Changes" comment="Bug fixes Task 1 New Code" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -124,7 +117,7 @@
       <workItem from="1667756623609" duration="40000" />
       <workItem from="1667815743524" duration="865000" />
       <workItem from="1667846873388" duration="71000" />
-      <workItem from="1667920737309" duration="26046000" />
+      <workItem from="1667920737309" duration="26473000" />
     </task>
     <task id="LOCAL-00001" summary="Path change">
       <created>1666641601284</created>
@@ -182,7 +175,21 @@
       <option name="project" value="LOCAL" />
       <updated>1668037311915</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Bug fixes Task 1 New Code">
+      <created>1668037640175</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1668037640175</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Bug fixes Task 1 New Code">
+      <created>1668038007948</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1668038007948</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
