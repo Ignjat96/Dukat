@@ -5,14 +5,35 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e4f1d6f0-1066-455c-8c4e-943569fc3e06" name="Changes" comment="Bug fixes">
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ExplorerThread.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Peers" beforeDir="false" afterPath="$PROJECT_DIR$/Peers" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bootstrappingNode.properties" beforeDir="false" afterPath="$PROJECT_DIR$/bootstrappingNode.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Error.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Error.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Explorer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Explorer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Handshake.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Handshake.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Listener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Listener.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ListenerThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ListenerThread.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Error.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Error.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Explorer$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Explorer$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Explorer.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Explorer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Handshake.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Handshake.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Listener.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Listener.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ListenerThread.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ListenerThread.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -42,9 +63,13 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../PySift Course" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../TogglzDemo" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -52,7 +77,14 @@
       <recent name="C:\Users\Administrator\Desktop\Dukat\Dukat\src\main\java" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Explorer">
+  <component name="RunManager" selected="Application.Listener">
+    <configuration name="Explorer 2" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="Explorer" />
+      <module name="Dukat" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Explorer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Explorer" />
       <module name="Dukat" />
@@ -67,9 +99,14 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="Application.Explorer 2" />
+      <item itemvalue="Application.Listener" />
+      <item itemvalue="Application.ExplorerTester" />
+    </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Explorer" />
+        <item itemvalue="Application.ExplorerTester" />
         <item itemvalue="Application.Listener" />
       </list>
     </recent_temporary>
@@ -97,7 +134,9 @@
       <workItem from="1667592158533" duration="2825000" />
       <workItem from="1667676137281" duration="146000" />
       <workItem from="1667756623609" duration="40000" />
-      <workItem from="1667815743524" duration="262000" />
+      <workItem from="1667815743524" duration="865000" />
+      <workItem from="1667846873388" duration="71000" />
+      <workItem from="1667920737309" duration="25597000" />
     </task>
     <task id="LOCAL-00001" summary="Path change">
       <created>1666641601284</created>
@@ -141,7 +180,14 @@
       <option name="project" value="LOCAL" />
       <updated>1667259624484</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Bug fixes">
+      <created>1667816018463</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1667816018464</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

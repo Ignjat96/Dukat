@@ -1,19 +1,26 @@
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
-import java.io.*;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.net.Socket;
 
-public class ListenerThread implements Runnable {
+public class ExplorerThread implements Runnable {
 
     private Listener listener;
-    private BufferedReader in;
+    private Socket socket;
     private PrintWriter out;
+    private BufferedReader in;
 
-    public ListenerThread(Listener listener) throws IOException {
+    public ExplorerThread(Listener listener, String peer) throws IOException {
         this.listener = listener;
-        this.out = new PrintWriter(listener.getSocket().getOutputStream());
-        this.in = new BufferedReader(new InputStreamReader(listener.getSocket().getInputStream()));
+        String[] AddressAndPort = peer.split(":");
+        this.socket = new Socket(AddressAndPort[0], Integer.parseInt(AddressAndPort[1]));
+        this.out = new PrintWriter(this.socket.getOutputStream());
+        this.in = new BufferedReader(new InputStreamReader(this.socket.getInputStream()));
     }
 
     @Override
@@ -25,6 +32,7 @@ public class ListenerThread implements Runnable {
                 return;
             }
             listener.getRemotePeers(in, out);
+
             try {
                 while (true) {
                     String receivedMessage = in.readLine();
@@ -53,9 +61,14 @@ public class ListenerThread implements Runnable {
                 out.close();
                 in.close();
             }
+
+            out.close();
+            in.close();
+            socket.close();
         } catch (IOException e) {
-            System.err.println(e.getStackTrace());
+            e.printStackTrace();
         }
+
 
     }
 }
