@@ -11,16 +11,22 @@ import java.net.Socket;
 public class ExplorerThread implements Runnable {
 
     private Node node;
+    private String addressAndPort;
     private Socket socket;
     private PrintWriter out;
     private BufferedReader in;
 
     public ExplorerThread(Node node, String peer) throws IOException {
         this.node = node;
-        String[] AddressAndPort = peer.split(":");
-        this.socket = new Socket(AddressAndPort[0], Integer.parseInt(AddressAndPort[1]));
+        this.addressAndPort = peer;
+        String[] addressAndPortSplitted = peer.split(":");
+        this.socket = new Socket(addressAndPortSplitted[0], Integer.parseInt(addressAndPortSplitted[1]));
         this.out = new PrintWriter(this.socket.getOutputStream());
         this.in = new BufferedReader(new InputStreamReader(this.socket.getInputStream()));
+    }
+
+    public String getAddressAndPort() {
+        return addressAndPort;
     }
 
     @Override

@@ -4,7 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e4f1d6f0-1066-455c-8c4e-943569fc3e06" name="Changes" comment="Bug fixes Task 1 New Code" />
+    <list default="true" id="e4f1d6f0-1066-455c-8c4e-943569fc3e06" name="Changes" comment="Bug fixes Task 1 New Code">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ExplorerThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ExplorerThread.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Node.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Node.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -54,20 +58,21 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Administrator\Desktop\Dukat\src\main\java" />
       <recent name="C:\Users\Administrator\Desktop\Dukat\Dukat" />
       <recent name="C:\Users\Administrator\Desktop\Dukat\Dukat\src\main\java" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Node">
-    <configuration name="Explorer 2" type="Application" factoryName="Application">
-      <option name="MAIN_CLASS_NAME" value="Explorer" />
+  <component name="RunManager" selected="Application.ExplorerTester2">
+    <configuration name="ExplorerTester" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="ExplorerTester" />
       <module name="Dukat" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Explorer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Explorer" />
+    <configuration name="ExplorerTester2" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="ExplorerTester" />
       <module name="Dukat" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -81,14 +86,14 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Application.Explorer 2" />
-      <item itemvalue="Application.ExplorerTester" />
+      <item itemvalue="Application.ExplorerTester2" />
       <item itemvalue="Application.Node" />
+      <item itemvalue="Application.ExplorerTester" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Node" />
         <item itemvalue="Application.ExplorerTester" />
+        <item itemvalue="Application.Node" />
       </list>
     </recent_temporary>
   </component>
@@ -117,7 +122,7 @@
       <workItem from="1667756623609" duration="40000" />
       <workItem from="1667815743524" duration="865000" />
       <workItem from="1667846873388" duration="71000" />
-      <workItem from="1667920737309" duration="26473000" />
+      <workItem from="1667920737309" duration="28480000" />
     </task>
     <task id="LOCAL-00001" summary="Path change">
       <created>1666641601284</created>
@@ -189,7 +194,14 @@
       <option name="project" value="LOCAL" />
       <updated>1668038007948</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Bug fixes Task 1 New Code">
+      <created>1668038126770</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1668038126770</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

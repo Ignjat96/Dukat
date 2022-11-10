@@ -109,13 +109,20 @@ public class Node {
             return;
         }
         for (int i = 0; i < peersToConnect.size(); i++) {
-            String peer = peersToConnect.get(new Random().nextInt(peersToConnect.size()-1));
-            peersToConnect.remove(peer);
-            ExplorerThread explorerThread = new ExplorerThread(node, peer);
-            connectedPeersWithExplorer.add(explorerThread);
             if (connectedPeersWithExplorer.size() >= LIMIT) {
                 return;
             }
+            String peer = peersToConnect.get(new Random().nextInt(peersToConnect.size()-1));
+            peersToConnect.remove(peer);
+            boolean flag = false;
+            for (ExplorerThread thread : connectedPeersWithExplorer) {
+                if (thread.getAddressAndPort().equals(peer)) {
+                    flag = true;
+                }
+            }
+            if (flag) continue;
+            ExplorerThread explorerThread = new ExplorerThread(node, peer);
+            connectedPeersWithExplorer.add(explorerThread);
             explorerPool.execute(explorerThread);
         }
 
