@@ -26,8 +26,8 @@ public class Explorer {
         String Port = properties.getProperty("Port");
         reader.close();
 
-        this.socket = new Socket("localhost", Integer.parseInt(Port));
-        //this.socket = new Socket(IP, Integer.parseInt(Port));
+        //this.socket = new Socket("localhost", Integer.parseInt(Port));
+        this.socket = new Socket(IP, Integer.parseInt(Port));
     }
 
     private void getPeers(PrintWriter out, BufferedReader in) throws IOException {
