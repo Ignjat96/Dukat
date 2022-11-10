@@ -51,7 +51,7 @@ public final class Handshake {
 
         String message = in.readLine();
         System.out.println(message);
-        for (int i = 0; i < 1; i++) {
+        for (int i = 0; i < 3; i++) {
             System.out.println(in.readLine());
         }
 
