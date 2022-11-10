@@ -114,6 +114,7 @@ public class Node {
             }
             String peer = peersToConnect.get(new Random().nextInt(peersToConnect.size()-1));
             peersToConnect.remove(peer);
+            peersToConnect.remove("139.59.136.230:18018");
             boolean flag = false;
             for (ExplorerThread thread : connectedPeersWithExplorer) {
                 if (thread.getAddressAndPort().equals(peer)) {
