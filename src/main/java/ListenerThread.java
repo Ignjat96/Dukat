@@ -1,6 +1,8 @@
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
+import org.json.simple.parser.ParseException;
+
 import java.io.*;
 
 
@@ -19,20 +21,25 @@ public class ListenerThread implements Runnable {
     @Override
     public void run() {
         try {
-            if (!Handshake.handshake(in, out)) {
+            if (!Handshake.sendHelloMessage(in, out)) {
                 out.close();
                 in.close();
                 return;
             }
-            node.getRemotePeers(in, out);
+            node.getPeers(in, out);
             try {
                 while (true) {
                     String receivedMessage = in.readLine();
                     if (receivedMessage == null) break;
 
                     System.out.println(receivedMessage);
-                    JSONObject receivedMessageJSON = (JSONObject) JSONValue.parse(receivedMessage);
-
+                    JSONObject receivedMessageJSON;
+                    try {
+                        receivedMessageJSON = (JSONObject) JSONValue.parseWithException(receivedMessage);
+                    } catch (ParseException e) {
+                        Error.sendError(out, "Received message: " + receivedMessage + " is not a valid JSON object.");
+                        continue;
+                    }
                     if (receivedMessageJSON.get("type").equals("getpeers")) {
                         JSONObject message = new JSONObject();
                         JSONArray localPeers = new JSONArray();
@@ -46,6 +53,7 @@ public class ListenerThread implements Runnable {
                         out.println(message);
                         out.flush();
                     } else {
+                        System.out.println(receivedMessage);
                         Error.sendError(out,"Unsupported message type received");
                     }
                 }

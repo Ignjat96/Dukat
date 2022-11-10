@@ -9,20 +9,6 @@ import java.net.Socket;
 
 public final class Handshake {
 
-    private static JSONObject helloMessage() {
-        JSONObject helloMessage = new JSONObject();
-        helloMessage.put("type", "hello");
-        helloMessage.put("version", "0.8.0");
-        helloMessage.put("agent", "Kerma−Core Client 0.8");
-        return helloMessage;
-    }
-
-    private static JSONObject getPeersMessage() {
-        JSONObject getPeersMessage = new JSONObject();
-        getPeersMessage.put("type", "getpeers");
-        return getPeersMessage;
-    }
-
     private static boolean helloMessageChecker(PrintWriter out, String message) throws IOException {
         if (message == null || message.equals("")) {
             Error.sendError(out, "Received message: " + message + " is an invalid hello message.");
@@ -58,14 +44,14 @@ public final class Handshake {
         return true;
     }
 
-    public static boolean handshake(BufferedReader in, PrintWriter out) throws IOException {
-        out.println(helloMessage());
-        out.println(getPeersMessage());
+    public static boolean sendHelloMessage(BufferedReader in, PrintWriter out) throws IOException {
+        out.println(ProtocolMessages.helloMessage());
+        out.println(ProtocolMessages.getPeersMessage());
         out.flush();
 
         String message = in.readLine();
         System.out.println(message);
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 1; i++) {
             System.out.println(in.readLine());
         }
 

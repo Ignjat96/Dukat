@@ -17,10 +17,7 @@ public class Node {
 
     private ServerSocket serverSocket;
     private Socket socket;
-    private static final int LIMIT = 3;
-    private static ArrayList<ExplorerThread> connectedPeersWithExplorer = new ArrayList<>();
-    private static ExecutorService listenerPool = Executors.newFixedThreadPool(LIMIT);
-    private static ExecutorService explorerPool = Executors.newFixedThreadPool(LIMIT);
+    private static ExecutorService listenerPool = Executors.newFixedThreadPool(5);
 
     public Node() throws IOException {
         this.serverSocket = new ServerSocket(18018);
@@ -49,10 +46,8 @@ public class Node {
         return peers;
     }
 
-    public void getRemotePeers(BufferedReader in, PrintWriter out) throws IOException {
-        JSONObject message = new JSONObject();
-        message.put("type", "getpeers");
-        out.println(message);
+    public void getPeers(BufferedReader in, PrintWriter out) throws IOException {
+        out.println(ProtocolMessages.getPeersMessage());
         out.flush();
 
         String serverResponse = in.readLine();
@@ -102,44 +97,14 @@ public class Node {
         peersWriter.close();
     }
 
-    public void establishConnections(Node node) throws IOException {
-        ArrayList<String> peersToConnect = new ArrayList<>(this.getAlreadyKnownPeers());
-        if (peersToConnect.size() == 0) {
-            System.err.println("There are no known peers to connect to!");
-            return;
-        }
-        for (int i = 0; i < peersToConnect.size(); i++) {
-            if (connectedPeersWithExplorer.size() >= LIMIT) {
-                return;
-            }
-            String peer = peersToConnect.get(new Random().nextInt(peersToConnect.size()-1));
-            peersToConnect.remove(peer);
-            peersToConnect.remove("139.59.136.230:18018");
-            boolean flag = false;
-            for (ExplorerThread thread : connectedPeersWithExplorer) {
-                if (thread.getAddressAndPort().equals(peer)) {
-                    flag = true;
-                }
-            }
-            if (flag) continue;
-            ExplorerThread explorerThread = new ExplorerThread(node, peer);
-            connectedPeersWithExplorer.add(explorerThread);
-            explorerPool.execute(explorerThread);
-        }
-
-    }
-
     public static void main(String[] args) throws IOException {
         Node node = new Node();
-
         try {
             while (true) {
                 node.socket = node.serverSocket.accept();
 
                 ListenerThread peerThread = new ListenerThread(node);
                 listenerPool.execute(peerThread);
-
-                node.establishConnections(node);
             }
         } finally {
             node.getServerSocket().close();
