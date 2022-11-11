@@ -1,4 +1,3 @@
-import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
 import org.json.simple.parser.ParseException;
@@ -21,40 +20,42 @@ public class ListenerThread implements Runnable {
     @Override
     public void run() {
         try {
-            if (!Handshake.sendHelloMessage(in, out)) {
+            ProtocolMessages.sendHelloMessage(out);
+            ProtocolMessages.sendGetPeersMessage(out);
+
+            String recievedHelloMessage = in.readLine();
+            System.out.println(recievedHelloMessage);
+            if (!Handshake.helloMessageChecker(out, recievedHelloMessage)) {
                 out.close();
                 in.close();
                 return;
             }
-            node.getPeers(in, out);
-            try {
-                while (true) {
-                    String receivedMessage = in.readLine();
-                    if (receivedMessage == null) break;
 
-                    System.out.println(receivedMessage);
+            try {
+                loop: while (true) {
+                    String receivedMessage = in.readLine();
+                    if (receivedMessage == null) break loop;
+
                     JSONObject receivedMessageJSON;
                     try {
                         receivedMessageJSON = (JSONObject) JSONValue.parseWithException(receivedMessage);
                     } catch (ParseException e) {
                         Error.sendError(out, "Received message: " + receivedMessage + " is not a valid JSON object.");
-                        continue;
+                        break loop;
                     }
-                    if (receivedMessageJSON.get("type").equals("getpeers")) {
-                        JSONObject message = new JSONObject();
-                        JSONArray localPeers = new JSONArray();
-
-                        for (String peer: node.getAlreadyKnownPeers()) {
-                            localPeers.add(peer);
-                        }
-                        message.put("type", "peers");
-                        message.put("peers", localPeers);
-
-                        out.println(message);
-                        out.flush();
-                    } else {
-                        System.out.println(receivedMessage);
-                        Error.sendError(out,"Unsupported message type received");
+                    String type = (String) receivedMessageJSON.get("type");
+                    switch (type) {
+                        case "getpeers":
+                            System.out.println(receivedMessage);
+                            ProtocolMessages.sendPeersMessage(out);
+                            break;
+                        case "peers":
+                            System.out.println(receivedMessage);
+                            ProtocolMessages.receivePeersMessage(receivedMessage, out);
+                            break;
+                        default:
+                            Error.sendError(out,"Unsupported message type received");
+                            break loop;
                     }
                 }
             } finally {

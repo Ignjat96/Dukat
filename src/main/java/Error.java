@@ -2,7 +2,6 @@ import org.json.simple.JSONObject;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.net.Socket;
 
 public final class Error {
     public static void sendError(PrintWriter out, String cause) throws IOException {

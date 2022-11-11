@@ -2,19 +2,16 @@ import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
 import org.json.simple.parser.ParseException;
 
-import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.net.Socket;
 
 public final class Handshake {
 
-    private static boolean helloMessageChecker(PrintWriter out, String message) throws IOException {
+    public static boolean helloMessageChecker(PrintWriter out, String message) throws IOException {
         if (message == null || message.equals("")) {
             Error.sendError(out, "Received message: " + message + " is an invalid hello message.");
             return false;
         }
-
         JSONObject messageJSON;
         try {
              messageJSON = (JSONObject) JSONValue.parseWithException(message);
@@ -41,22 +38,6 @@ public final class Handshake {
             Error.sendError(out, "Unsupported message version received.");
             return false;
         }
-        return true;
-    }
-
-    public static boolean sendHelloMessage(BufferedReader in, PrintWriter out) throws IOException {
-        out.println(ProtocolMessages.helloMessage());
-        out.println(ProtocolMessages.getPeersMessage());
-        out.flush();
-
-        String message = in.readLine();
-        System.out.println(message);
-        for (int i = 0; i < 3; i++) {
-            System.out.println(in.readLine());
-        }
-
-        if (!helloMessageChecker(out, message)) return false;
-
         return true;
     }
 }
