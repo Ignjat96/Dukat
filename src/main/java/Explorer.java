@@ -5,8 +5,8 @@ import java.util.Properties;
 
 public class Explorer {
 
-    private Socket socket;
-    private boolean connectingToBootstrap = false;
+    private final Socket socket;
+    private final boolean connectingToBootstrap = false;
 
     public Explorer() throws IOException {
         FileReader reader = new FileReader("bootstrappingNode.properties");
@@ -20,7 +20,12 @@ public class Explorer {
         if (connectingToBootstrap) {
             this.socket = new Socket(IP, Integer.parseInt(Port));
         } else {
-            this.socket = new Socket("localhost", Integer.parseInt(Port));
+            String DigitalOceanIP = "139.59.136.230";
+            boolean remote = true;
+            if (remote)
+                this.socket = new Socket(DigitalOceanIP, Integer.parseInt(Port));
+            else
+                this.socket = new Socket("localhost", Integer.parseInt(Port));
         }
     }
 

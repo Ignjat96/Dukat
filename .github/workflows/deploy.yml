@@ -16,6 +16,7 @@ jobs:
           #password: ${{ secrets.SSH_PASSWORD }}
      
           script: |
+            rm .r CryptoCurrencies
             mkdir CryptoCurrencies 
             cd CryptoCurrencies 
             git clone git@github.com:Ignjat96/Dukat.git
