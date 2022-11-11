@@ -80,8 +80,6 @@ public class Explorer {
                     ProtocolMessages.sendPeersMessage(out);
                     break;
                 default:
-                    out.println(command);
-                    out.flush();
                     System.out.println("Not recognizable command: " + command);
             }
         }
