@@ -3,6 +3,7 @@ import org.json.simple.JSONValue;
 import org.json.simple.parser.ParseException;
 
 import java.io.*;
+import java.security.NoSuchAlgorithmException;
 
 
 public class ListenerThread implements Runnable {
@@ -53,11 +54,25 @@ public class ListenerThread implements Runnable {
                             System.out.println(receivedMessage);
                             ProtocolMessages.receivePeersMessage(receivedMessage, out);
                             break;
+                        case "getobject":
+                            System.out.println(receivedMessage);
+                            ProtocolMessages.receiveGetObjectMessage(receivedMessage, out);
+                            break;
+                        case "ihaveobject":
+                            System.out.println(receivedMessage);
+                            ProtocolMessages.receiveIHaveObjectMessage(receivedMessage, out);
+                            break;
+                        case "object":
+                            System.out.println(receivedMessage);
+                            ProtocolMessages.receiveObjectMessage(receivedMessage, out);
+                            break;
                         default:
                             Error.sendError(out,"Unsupported message type received");
                             break loop;
                     }
                 }
+            } catch (NoSuchAlgorithmException e) {
+                System.err.println(e.getStackTrace());
             } finally {
                 out.close();
                 in.close();

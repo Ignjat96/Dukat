@@ -19,5 +19,4 @@ class Input {
     public void setSig(String sig) {
         this.sig = sig;
     }
-
 }

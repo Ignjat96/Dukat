@@ -1,5 +1,6 @@
 import Utils.MyUtils;
 import data.Block;
+import data.Database;
 import data.Output;
 import data.Transaction;
 
@@ -47,5 +48,13 @@ public class Test {
         String trans = Files.readString(Path.of("src/main/java/data/transaction.txt"));
         System.out.println(trans);
         System.out.println(MyUtils.getSHA(trans));
+
+        Database database = new Database("src/main/java/data/database.txt");
+        database.addBlock(block);
+        database.addTransaction(transaction);
+        database.saveDatabase();
+
+        Database database2 = new Database("src/main/java/data/database.txt");
+        System.out.println(database2.toString());
     }
 }

@@ -12,11 +12,11 @@ import java.util.Scanner;
 
 public class Database {
     private String filename;
-    private Map<String, String> database;
+    private Map<String, String> data;
 
     public Database(String filename) {
         this.filename = filename;
-        this.database = new HashMap<>();
+        this.data = new HashMap<>();
         this.readDatabase();
     }
 
@@ -25,8 +25,8 @@ public class Database {
             File myObj = new File(this.filename);
             Scanner myReader = new Scanner(myObj);
             while (myReader.hasNextLine()) {
-                String data = myReader.nextLine();
-                database.put(data.split(" ")[0], data.split(" ")[1]);
+                String line = myReader.nextLine();
+                data.put(line.split(" ")[0], line.split(" ")[1]);
             }
             myReader.close();
         } catch (FileNotFoundException e) {
@@ -44,8 +44,8 @@ public class Database {
                 myObj.delete();
                 myObj.createNewFile();
             }
-            FileWriter myWriter = new FileWriter("filename.txt");
-            for (Map.Entry<String, String> entry : database.entrySet()) {
+            FileWriter myWriter = new FileWriter(this.filename);
+            for (Map.Entry<String, String> entry : data.entrySet()) {
                 myWriter.write(entry.getKey() + " " + entry.getValue() + "\n");
             }
             myWriter.close();
@@ -64,12 +64,17 @@ public class Database {
     }
 
     public void addBlock(Block block) throws IOException, NoSuchAlgorithmException {
-        this.database.put(MyUtils.getSHA(MyUtils.getCanonicJSON(block)), MyUtils.getCanonicJSON(block));
+        this.data.put(MyUtils.getSHA(MyUtils.getCanonicJSON(block)), MyUtils.getCanonicJSON(block));
     }
 
     public void addTransaction(Transaction transaction) throws IOException, NoSuchAlgorithmException {
-        this.database.put(MyUtils.getSHA(MyUtils.getCanonicJSON(transaction)), MyUtils.getCanonicJSON(transaction));
+        this.data.put(MyUtils.getSHA(MyUtils.getCanonicJSON(transaction)), MyUtils.getCanonicJSON(transaction));
     }
+
+    public Map<String, String> getDatabase() {
+        return data;
+    }
+
 
 
 }

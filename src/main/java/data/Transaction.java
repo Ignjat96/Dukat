@@ -3,6 +3,10 @@ package data;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
+import java.nio.charset.StandardCharsets;
+import java.security.*;
+import java.util.Base64;
+
 import java.util.List;
 
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY, getterVisibility = JsonAutoDetect.Visibility.NONE, setterVisibility = JsonAutoDetect.Visibility.NONE)
@@ -43,6 +47,27 @@ public class Transaction {
 
     public void setHeight(Integer height) {
         this.height = height;
+    }
+
+    public boolean validateTransaction() {
+        Database database = new Database("src/main/java/data/database.txt");
+        int sumOfInputs = 0;
+        int sumOfOutputs = 0;
+        for (Input input : inputs) {
+            String txid = input.getOutpoint().getTxid();
+            if(!database.getDatabase().containsKey(txid)){
+                return false;
+            }
+            // verify the signature with ed25519
+            // kako provjeriti the sum of all input values is at least the sum of output values, ako input nema value?
+        }
+
+        for(Output output : outputs){
+            if(output.getPubkey().length() != 64 && output.getValue() < 0){
+                return false;
+            }
+        }
+        return true;
     }
 
 }
