@@ -1,7 +1,12 @@
+package Utils;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import org.erdtman.jcs.JsonCanonicalizer;
 
+import java.io.IOException;
 import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
@@ -22,7 +27,15 @@ public final class MyUtils {
         return hexString.toString();
     }
 
+    public static String getCanonicJSON(Object object) throws IOException {
+        ObjectMapper mapper = new ObjectMapper();
+        String jsonString = mapper.writeValueAsString(object);
+        JsonCanonicalizer jc = new JsonCanonicalizer(jsonString);
+        return jc.getEncodedString();
+    }
+
     public static String getSHA(String input) throws NoSuchAlgorithmException {
+
         MessageDigest md = MessageDigest.getInstance("SHA-256");
         return toHexString(md.digest(input.getBytes(StandardCharsets.UTF_8)));
     }

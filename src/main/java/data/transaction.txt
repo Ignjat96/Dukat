@@ -1,0 +1,1 @@
+{"height":1,"outputs":[{"pubkey":"62b7c521cd9211579cf70fd4099315643767b96711febaa5c76dc3daf27c281c","value":50000000000000}],"type":"transaction"}

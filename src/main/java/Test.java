@@ -1,14 +1,11 @@
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.MapperFeature;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import Utils.MyUtils;
 import com.google.gson.*;
 import data.Block;
 
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.security.NoSuchAlgorithmException;
-
-import java.nio.charset.StandardCharsets;
-import org.erdtman.jcs.JsonCanonicalizer;
 
 public class Test {
 
@@ -23,19 +20,17 @@ public class Test {
         block.setNote("The Economist 2021−06−20: Crypto−miners are probably to blame for the graphics−chip shortage");
         block.setPrevid(null);
 
-        ObjectMapper mapper = new ObjectMapper();
-        String jsonString = mapper.writeValueAsString(block);
-        JsonCanonicalizer jc = new JsonCanonicalizer(jsonString);
-        System.out.println(jc.getEncodedString());
-        System.out.println(MyUtils.getSHA(jc.getEncodedString()));
+        System.out.println(MyUtils.getCanonicJSON(block));
+        System.out.println(MyUtils.getSHA(MyUtils.getCanonicJSON(block)));
 
-        Gson gson = new GsonBuilder().setPrettyPrinting().serializeNulls().create();
-        JsonElement je = JsonParser.parseString(jc.getEncodedString());
-        String prettyJsonString = gson.toJson(je);
+        String genesisBlock = Files.readString(Path.of("src/main/java/data/genesis.txt"));
+        System.out.println(genesisBlock);
+        System.out.println(MyUtils.getSHA(genesisBlock));
 
-        System.out.println(prettyJsonString);
+        System.out.println(MyUtils.getCanonicJSON(block).equals(genesisBlock));
 
-
-        System.out.println(MyUtils.getSHA(prettyJsonString));
+        String trans = Files.readString(Path.of("src/main/java/data/transaction.txt"));
+        System.out.println(trans);
+        System.out.println(MyUtils.getSHA(trans));
     }
 }
