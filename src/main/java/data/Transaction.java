@@ -1,9 +1,17 @@
 package data;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonInclude;
+
+import java.util.List;
+
+@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY, getterVisibility = JsonAutoDetect.Visibility.NONE, setterVisibility = JsonAutoDetect.Visibility.NONE)
 public class Transaction {
     private String type;
-    private Input[] inputs;
-    private String outputs;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    private List<Input> inputs;
+    private List<Output> outputs;
+    private Integer height;
 
     public String getType() {
         return type;
@@ -13,64 +21,29 @@ public class Transaction {
         this.type = type;
     }
 
-    public Input[] getInputs() {
+    public List<Input> getInputs() {
         return inputs;
     }
 
-    public void setInputs(Input[] inputs) {
+    public void setInputs(List<Input> inputs) {
         this.inputs = inputs;
     }
 
-    public String getOutputs() {
+    public List<Output> getOutputs() {
         return outputs;
     }
 
-    public void setOutputs(String outputs) {
+    public void setOutputs(List<Output> outputs) {
         this.outputs = outputs;
     }
 
-    class Input {
-        private Outpoint outpoint;
-        private String sig;
-
-        public Outpoint getOutpoint() {
-            return outpoint;
-        }
-
-        public void setOutpoint(Outpoint outpoint) {
-            this.outpoint = outpoint;
-        }
-
-        public String getSig() {
-            return sig;
-        }
-
-        public void setSig(String sig) {
-            this.sig = sig;
-        }
-
-        class Outpoint{
-            private String txid;
-            private Integer index;
-
-            public String getTxid() {
-                return txid;
-            }
-            public void setTxid(String txid) {
-                this.txid = txid;
-            }
-            public Integer getIndex() {
-                return index;
-            }
-            public void setIndex(Integer index) {
-                this.index = index;
-            }
-        }
+    public Integer getHeight() {
+        return height;
     }
 
-    class Output {
-        private String pubkey;
-        private Integer value;
+    public void setHeight(Integer height) {
+        this.height = height;
     }
+
 }
 

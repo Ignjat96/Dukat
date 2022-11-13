@@ -1,11 +1,14 @@
 import Utils.MyUtils;
-import com.google.gson.*;
 import data.Block;
+import data.Output;
+import data.Transaction;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
+import java.util.Collection;
 
 public class Test {
 
@@ -28,6 +31,18 @@ public class Test {
         System.out.println(MyUtils.getSHA(genesisBlock));
 
         System.out.println(MyUtils.getCanonicJSON(block).equals(genesisBlock));
+
+        // make transactio
+        Transaction transaction = new Transaction();
+        transaction.setHeight(1);
+        Output output = new Output("62b7c521cd9211579cf70fd4099315643767b96711febaa5c76dc3daf27c281c", 50000000000000L);
+        ArrayList<Output> outputs = new ArrayList<>();
+        outputs.add(output);
+        transaction.setOutputs(outputs);
+        transaction.setType("transaction");
+
+        System.out.println(MyUtils.getCanonicJSON(transaction));
+        System.out.println(MyUtils.getSHA(MyUtils.getCanonicJSON(transaction)));
 
         String trans = Files.readString(Path.of("src/main/java/data/transaction.txt"));
         System.out.println(trans);
