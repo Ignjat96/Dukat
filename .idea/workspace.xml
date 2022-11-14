@@ -5,18 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e4f1d6f0-1066-455c-8c4e-943569fc3e06" name="Changes" comment="Bug fixes Task 1 New Code">
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ListenerThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ListenerThread.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ProtocolMessages.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ProtocolMessages.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Test.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/data/Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/data/Database.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/data/Input.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/data/Input.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/data/Transaction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/data/Transaction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Error.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Error.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Handshake.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Handshake.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/data/database.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/data/database.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/ListenerThread.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ListenerThread.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Node.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Node.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,10 +26,10 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/Peers" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/Node.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/main/java/Handshake.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/main/java/ListenerThread.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/main/java/Node.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Peers" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -54,18 +46,6 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;
-  }
-}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Administrator\Desktop\Dukat\src\main\java" />

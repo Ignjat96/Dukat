@@ -21,16 +21,14 @@ public class Test {
         block.setType("block");
         block.setMiner("dionyziz");
         block.setTxids(new String[]{});
-        block.setNote("The Economist 2021−06−20: Crypto−miners are probably to blame for the graphics−chip shortage");
+        block.setNote("The Economist 2021-06-20: Crypto-miners are probably to blame for the graphics-chip shortage");
         block.setPrevid(null);
 
         System.out.println(MyUtils.getCanonicJSON(block));
         System.out.println(MyUtils.getSHA(MyUtils.getCanonicJSON(block)));
-
         String genesisBlock = Files.readString(Path.of("src/main/java/data/genesis.txt"));
         System.out.println(genesisBlock);
         System.out.println(MyUtils.getSHA(genesisBlock));
-
         System.out.println(MyUtils.getCanonicJSON(block).equals(genesisBlock));
 
         // make transactio
