@@ -3,6 +3,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
 import data.Database;
+import data.Transaction;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
@@ -152,8 +153,10 @@ public final class ProtocolMessages {
         Database database = new Database("src/main/java/data/database.txt");
         receivedMessage = receivedMessage.replace("\\n", "");
         JSONObject receivedObjectJSON;
+        JSONObject receivedObjectInternalJSON;
         try {
             receivedObjectJSON = (JSONObject) JSONValue.parseWithException(receivedMessage);
+            receivedObjectInternalJSON = (JSONObject) JSONValue.parseWithException(receivedObjectJSON.get("object").toString());
         } catch (ParseException e) {
             Error.sendError(out, "Received message: " + receivedMessage + " is an invalid JSON Object.");
             return;
@@ -163,6 +166,14 @@ public final class ProtocolMessages {
         String object = receivedObjectJSON.get("object").toString();
         String objectid = MyUtils.getSHA(object);
         if(!database.getDatabase().containsKey(objectid)){
+            String type = receivedObjectInternalJSON.get("type").toString();
+            if(type == "transaction"){
+                Transaction transaction = new Gson().fromJson(object, Transaction.class);
+                if(!transaction.validateTransaction()){
+                    System.out.println("Transaction is not valid");
+                    Error.sendError(out, "Transaction is not valid");
+                }
+            }
             database.getDatabase().put(objectid, object);
             database.saveDatabase();
             sendIHaveObjectMessage(out, objectid);
