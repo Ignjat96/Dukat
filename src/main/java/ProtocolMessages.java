@@ -11,10 +11,18 @@ import org.json.simple.parser.ParseException;
 import java.io.*;
 import java.lang.reflect.Type;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Random;
 import java.util.Set;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public final class ProtocolMessages {
+
+    private static final int LIMIT = 3;
+    private static ExecutorService explorerPool = Executors.newFixedThreadPool(LIMIT);
+    private static ArrayList<ExplorerThread> connectedPeersWithExplorer = new ArrayList<>();
 
     public static void sendHelloMessage(PrintWriter out) throws IOException {
         JSONObject helloMessage = new JSONObject();
@@ -62,10 +70,10 @@ public final class ProtocolMessages {
         out.flush();
     }
 
-    public static void sendObject(PrintWriter out, Object object) throws IOException {
+    public static void sendObject(PrintWriter out, String object) throws IOException {
         JSONObject message = new JSONObject();
-        message.put("type", "ihaveobject");
-        message.put("objectid", MyUtils.getCanonicJSON(object));
+        message.put("type", "object");
+        message.put("object", object);
         out.println(message);
         out.flush();
     }
@@ -114,26 +122,42 @@ public final class ProtocolMessages {
         peersWriter.close();
     }
 
-    public static void receiveGetObjectMessage(String receivedMessage, PrintWriter out) throws IOException {
+    public static void receiveGetObjectMessage(String receivedMessage, PrintWriter out, BufferedReader in) throws IOException {
+        if (receivedMessage == null || receivedMessage.equals("")) {
+            Error.sendError(out, "Received message: " + receivedMessage + " is an invalid JSON Object.");
+            out.close();
+            in.close();
+            return;
+        }
         Database database = new Database("src/main/java/data/database.txt");
-        receivedMessage = receivedMessage.replace("\\n", "");
-        JSONObject receivedPeersMessageJSON;
+        JSONObject receivedMessageJSON;
         try {
-            receivedPeersMessageJSON = (JSONObject) JSONValue.parseWithException(receivedMessage);
+            receivedMessageJSON = (JSONObject) JSONValue.parseWithException(receivedMessage);
         } catch (ParseException e) {
             Error.sendError(out, "Received message: " + receivedMessage + " is an invalid JSON Object.");
             return;
         }
-
-        String objectid = receivedPeersMessageJSON.get("objectid").toString();
+        if (receivedMessageJSON.get("objectid") == null) {
+            Error.sendError(out, "Received message: " + receivedMessage + " is an invalid JSON Object.");
+            out.close();
+            in.close();
+            return;
+        }
+        String objectid = receivedMessageJSON.get("objectid").toString();
         if(database.getDatabase().containsKey(objectid)){
+            System.out.println(database.getDatabase().get(objectid));
             sendObject(out, database.getDatabase().get(objectid));
         }
     }
 
-    public static void receiveIHaveObjectMessage(String receivedMessage, PrintWriter out) throws IOException {
+    public static void receiveIHaveObjectMessage(String receivedMessage, PrintWriter out, BufferedReader in) throws IOException {
+        if (receivedMessage == null || receivedMessage.equals("")) {
+            Error.sendError(out, "Received message: " + receivedMessage + " is an invalid JSON Object.");
+            out.close();
+            in.close();
+            return;
+        }
         Database database = new Database("src/main/java/data/database.txt");
-        receivedMessage = receivedMessage.replace("\\n", "");
         JSONObject receivedIHaveObjectMessageJSON;
         try {
             receivedIHaveObjectMessageJSON = (JSONObject) JSONValue.parseWithException(receivedMessage);
@@ -141,31 +165,72 @@ public final class ProtocolMessages {
             Error.sendError(out, "Received message: " + receivedMessage + " is an invalid JSON Object.");
             return;
         }
-
+        if (receivedIHaveObjectMessageJSON.get("objectid") == null) {
+            Error.sendError(out, "Received message: " + receivedMessage + " is an invalid JSON Object.");
+            out.close();
+            in.close();
+            return;
+        }
         String objectid = receivedIHaveObjectMessageJSON.get("objectid").toString();
         if(!database.getDatabase().containsKey(objectid)){
             sendGetObjectMessage(out, objectid);
         }
     }
 
-    public static void receiveObjectMessage(String receivedMessage, PrintWriter out) throws IOException, NoSuchAlgorithmException {
+    public static void receiveObjectMessage(String receivedMessage, PrintWriter out, BufferedReader in, Node node) throws IOException, NoSuchAlgorithmException {
         Database database = new Database("src/main/java/data/database.txt");
-        receivedMessage = receivedMessage.replace("\\n", "");
         JSONObject receivedObjectJSON;
+        System.out.println(receivedMessage);
+        if (receivedMessage == null) {
+            Error.sendError(out, "Received message: " + receivedMessage + " is an invalid JSON Object.");
+            return;
+        }
         try {
             receivedObjectJSON = (JSONObject) JSONValue.parseWithException(receivedMessage);
         } catch (ParseException e) {
             Error.sendError(out, "Received message: " + receivedMessage + " is an invalid JSON Object.");
             return;
         }
-
-
+        if (receivedObjectJSON.get("object") == null) {
+            Error.sendError(out, "Received message: " + receivedMessage + " is an invalid JSON Object.");
+            out.close();
+            in.close();
+            return;
+        }
         String object = receivedObjectJSON.get("object").toString();
         String objectid = MyUtils.getSHA(object);
         if(!database.getDatabase().containsKey(objectid)){
             database.getDatabase().put(objectid, object);
             database.saveDatabase();
             sendIHaveObjectMessage(out, objectid);
+            gossip(node, objectid);
         }
+    }
+
+    public static void gossip(Node node, String objectId) throws IOException {
+        ArrayList<String> peersToConnect = new ArrayList<>(node.getAlreadyKnownPeers());
+        System.out.println(peersToConnect);
+        if (peersToConnect.size() == 0) {
+            System.err.println("There are no known peers to connect to!");
+            return;
+        }
+        for (int i = 0; i < peersToConnect.size(); i++) {
+            String peer = peersToConnect.get(i);
+            peersToConnect.remove("139.59.136.230:18018");
+            boolean flag = false;
+            for (ExplorerThread thread : connectedPeersWithExplorer) {
+                if (thread.getAddressAndPort().equals(peer)) {
+                    flag = true;
+                }
+            }
+            if (flag) continue;
+            ExplorerThread explorerThread = new ExplorerThread(node, peer, objectId);
+            if (!explorerThread.isAvailable()) {
+                continue;
+            }
+            connectedPeersWithExplorer.add(explorerThread);
+            explorerPool.execute(explorerThread);
+        }
+
     }
 }

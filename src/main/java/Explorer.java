@@ -1,6 +1,7 @@
 
 import java.io.*;
 import java.net.Socket;
+import java.security.NoSuchAlgorithmException;
 import java.util.Properties;
 
 public class Explorer {
@@ -21,15 +22,15 @@ public class Explorer {
             this.socket = new Socket(IP, Integer.parseInt(Port));
         } else {
             String DigitalOceanIP = "139.59.136.230";
-            boolean remote = true;
+            boolean remote = false;
             if (remote)
                 this.socket = new Socket(DigitalOceanIP, Integer.parseInt(Port));
             else
-                this.socket = new Socket("localhost", Integer.parseInt(Port));
+                this.socket = new Socket("localhost", 18018);
         }
     }
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, NoSuchAlgorithmException {
         Explorer explorer = new Explorer();
 
         PrintWriter out = new PrintWriter(explorer.socket.getOutputStream());
@@ -78,6 +79,22 @@ public class Explorer {
                     break;
                 case "peers":
                     ProtocolMessages.sendPeersMessage(out);
+                    break;
+                case "getobject":
+                    ProtocolMessages.sendGetObjectMessage(out, null);
+                    serverResponse = in.readLine();
+                    System.out.println(serverResponse);
+                    ProtocolMessages.receiveObjectMessage(serverResponse, out, in, null);
+                    break;
+                case "ihaveobject":
+                    ProtocolMessages.sendIHaveObjectMessage(out, null);
+                    serverResponse = in.readLine();
+                    System.out.println(serverResponse);
+                    break;
+                case "object":
+                    ProtocolMessages.sendObject(out, "{\"height\":0,\"outputs\":[{\"pubkey\":\"8bd22d5b544887762cd6104b433d93e1f9a5f451fe47d641733e517d9551ab05\",\"value\":50}],\"type\":\"transaction\"}");
+                    serverResponse = in.readLine();
+                    System.out.println(serverResponse);
                     break;
                 default:
                     System.out.println("Not recognizable command: " + command);

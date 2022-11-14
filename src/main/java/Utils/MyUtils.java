@@ -34,6 +34,11 @@ public final class MyUtils {
         return jc.getEncodedString();
     }
 
+    public static String getCanonicJSONFromString(String object) throws IOException {
+        JsonCanonicalizer jc = new JsonCanonicalizer(object);
+        return jc.getEncodedString();
+    }
+
     public static String getSHA(String input) throws NoSuchAlgorithmException {
 
         MessageDigest md = MessageDigest.getInstance("SHA-256");

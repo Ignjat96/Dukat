@@ -56,15 +56,15 @@ public class ListenerThread implements Runnable {
                             break;
                         case "getobject":
                             System.out.println(receivedMessage);
-                            ProtocolMessages.receiveGetObjectMessage(receivedMessage, out);
+                            ProtocolMessages.receiveGetObjectMessage(receivedMessage, out, in);
                             break;
                         case "ihaveobject":
                             System.out.println(receivedMessage);
-                            ProtocolMessages.receiveIHaveObjectMessage(receivedMessage, out);
+                            ProtocolMessages.receiveIHaveObjectMessage(receivedMessage, out, in);
                             break;
                         case "object":
                             System.out.println(receivedMessage);
-                            ProtocolMessages.receiveObjectMessage(receivedMessage, out);
+                            ProtocolMessages.receiveObjectMessage(receivedMessage, out, in, node);
                             break;
                         default:
                             Error.sendError(out,"Unsupported message type received");

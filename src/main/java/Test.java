@@ -51,8 +51,5 @@ public class Test {
         database.addBlock(block);
         database.addTransaction(transaction);
         database.saveDatabase();
-
-        Database database2 = new Database("src/main/java/data/database.txt");
-        System.out.println(database2.toString());
     }
 }

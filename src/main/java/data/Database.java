@@ -26,7 +26,7 @@ public class Database {
             Scanner myReader = new Scanner(myObj);
             while (myReader.hasNextLine()) {
                 String line = myReader.nextLine();
-                data.put(line.split(" ")[0], line.split(" ")[1]);
+                data.put(line.split("=")[0], line.split("=")[1]);
             }
             myReader.close();
         } catch (FileNotFoundException e) {
@@ -46,7 +46,7 @@ public class Database {
             }
             FileWriter myWriter = new FileWriter(this.filename);
             for (Map.Entry<String, String> entry : data.entrySet()) {
-                myWriter.write(entry.getKey() + " " + entry.getValue() + "\n");
+                myWriter.write(entry.getKey() + "=" + entry.getValue() + "\n");
             }
             myWriter.close();
         } catch (IOException e) {

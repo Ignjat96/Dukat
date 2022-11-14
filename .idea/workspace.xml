@@ -4,11 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e4f1d6f0-1066-455c-8c4e-943569fc3e06" name="Changes" comment="Bug fixes Task 1 New Code">
+    <list default="true" id="e4f1d6f0-1066-455c-8c4e-943569fc3e06" name="Changes" comment="String Hash Compare Error Fix">
+      <change afterPath="$PROJECT_DIR$/src/main/java/ExplorerThread.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Peers" beforeDir="false" afterPath="$PROJECT_DIR$/Peers" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Explorer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Explorer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ListenerThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ListenerThread.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ProtocolMessages.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ProtocolMessages.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Utils/MyUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Utils/MyUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/data/Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/data/Database.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/data/database.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/data/database.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/ListenerThread.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ListenerThread.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Node.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Node.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,35 +67,15 @@
       <recent name="data" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Test">
-    <configuration name="DataBase" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="data.DataBase" />
-      <module name="Dukat" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value=".*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ExplorerTester" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="ExplorerTester" />
+  <component name="RunManager" selected="Application.Node">
+    <configuration name="Explorer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Explorer" />
       <module name="Dukat" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ExplorerTester2" type="Application" factoryName="Application">
-      <option name="MAIN_CLASS_NAME" value="ExplorerTester" />
-      <module name="Dukat" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Node" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+    <configuration name="Node" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="Node" />
       <module name="Dukat" />
       <method v="2">
@@ -102,18 +90,14 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Application.ExplorerTester2" />
-      <item itemvalue="Application.DataBase" />
-      <item itemvalue="Application.Test" />
       <item itemvalue="Application.Node" />
-      <item itemvalue="Application.ExplorerTester" />
+      <item itemvalue="Application.Test" />
+      <item itemvalue="Application.Explorer" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Explorer" />
         <item itemvalue="Application.Test" />
-        <item itemvalue="Application.DataBase" />
-        <item itemvalue="Application.Node" />
-        <item itemvalue="Application.ExplorerTester" />
       </list>
     </recent_temporary>
   </component>
@@ -225,7 +209,14 @@
       <option name="project" value="LOCAL" />
       <updated>1668038126770</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="String Hash Compare Error Fix">
+      <created>1668432586903</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1668432586903</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -246,6 +237,7 @@
     <MESSAGE value="Path change" />
     <MESSAGE value="Bug fixes" />
     <MESSAGE value="Bug fixes Task 1 New Code" />
-    <option name="LAST_COMMIT_MESSAGE" value="Bug fixes Task 1 New Code" />
+    <MESSAGE value="String Hash Compare Error Fix" />
+    <option name="LAST_COMMIT_MESSAGE" value="String Hash Compare Error Fix" />
   </component>
 </project>
