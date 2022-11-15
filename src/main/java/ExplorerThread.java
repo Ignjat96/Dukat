@@ -1,13 +1,9 @@
-import org.json.simple.JSONObject;
-import org.json.simple.JSONValue;
-import org.json.simple.parser.ParseException;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
-import java.net.SocketException;
 
 public class ExplorerThread implements Runnable {
 
@@ -16,37 +12,39 @@ public class ExplorerThread implements Runnable {
     private Socket socket;
     private PrintWriter out;
     private BufferedReader in;
-    private boolean available = true;
     private String objectId;
 
-    public ExplorerThread(Node node, String peer, String objectId) throws IOException {
+    public ExplorerThread(Node node, String peer, String objectId) {
         this.objectId = objectId;
         this.node = node;
         this.addressAndPort = peer;
-        String[] addressAndPortSplitted = peer.split(":");
-        try {
-            this.socket = new Socket(addressAndPortSplitted[0], Integer.parseInt(addressAndPortSplitted[1]));
-        } catch (SocketException e) {
-            System.out.println("Node: " + addressAndPort + " is not available.");
-            this.available = false;
-            return;
-        }
-        System.out.println("Connecting to Node: " + addressAndPort + ".");
-        this.out = new PrintWriter(this.socket.getOutputStream());
-        this.in = new BufferedReader(new InputStreamReader(this.socket.getInputStream()));
     }
 
     public String getAddressAndPort() {
         return addressAndPort;
     }
 
-    public boolean isAvailable() {
-        return available;
+    private boolean connect() throws IOException {
+        String[] addressAndPortSplitted = this.addressAndPort.split(":");
+        try {
+            this.socket = new Socket(addressAndPortSplitted[0], Integer.parseInt(addressAndPortSplitted[1]));
+        } catch (IOException e) {
+            System.out.println("Node: " + addressAndPort + " is not available.");
+            return false;
+        }
+        this.out = new PrintWriter(this.socket.getOutputStream());
+        this.in = new BufferedReader(new InputStreamReader(this.socket.getInputStream()));
+        if (this.out == null) {
+            return false;
+        }
+        System.out.println("Connecting to Node: " + addressAndPort + ".");
+        return true;
     }
 
     @Override
     public void run() {
         try {
+            if (!connect()) return;
             ProtocolMessages.sendHelloMessage(out);
             ProtocolMessages.sendGetPeersMessage(out);
             ProtocolMessages.sendIHaveObjectMessage(out, objectId);
@@ -85,4 +83,5 @@ public class ExplorerThread implements Runnable {
 
 
     }
+
 }

@@ -20,7 +20,7 @@ import java.util.concurrent.Executors;
 
 public final class ProtocolMessages {
 
-    private static final int LIMIT = 3;
+    private static final int LIMIT = 4000;
     private static ExecutorService explorerPool = Executors.newFixedThreadPool(LIMIT);
     private static ArrayList<ExplorerThread> connectedPeersWithExplorer = new ArrayList<>();
 
@@ -70,7 +70,7 @@ public final class ProtocolMessages {
         out.flush();
     }
 
-    public static void sendObject(PrintWriter out, String object) throws IOException {
+    public static void sendObject(PrintWriter out, String object) {
         JSONObject message = new JSONObject();
         message.put("type", "object");
         message.put("object", object);
@@ -79,6 +79,10 @@ public final class ProtocolMessages {
     }
 
     public static void receivePeersMessage(String receivedPeersMessage, PrintWriter out) throws IOException {
+        if (receivedPeersMessage == null) {
+            Error.sendError(out, "Received message: " + receivedPeersMessage + " is an invalid JSON Object.");
+            return;
+        }
         receivedPeersMessage = receivedPeersMessage.replace("\\n", "");
         JSONObject receivedPeersMessageJSON;
         try {
@@ -214,9 +218,9 @@ public final class ProtocolMessages {
             System.err.println("There are no known peers to connect to!");
             return;
         }
+        peersToConnect.remove("139.59.136.230:18018");
         for (int i = 0; i < peersToConnect.size(); i++) {
             String peer = peersToConnect.get(i);
-            peersToConnect.remove("139.59.136.230:18018");
             boolean flag = false;
             for (ExplorerThread thread : connectedPeersWithExplorer) {
                 if (thread.getAddressAndPort().equals(peer)) {
@@ -225,9 +229,6 @@ public final class ProtocolMessages {
             }
             if (flag) continue;
             ExplorerThread explorerThread = new ExplorerThread(node, peer, objectId);
-            if (!explorerThread.isAvailable()) {
-                continue;
-            }
             connectedPeersWithExplorer.add(explorerThread);
             explorerPool.execute(explorerThread);
         }
